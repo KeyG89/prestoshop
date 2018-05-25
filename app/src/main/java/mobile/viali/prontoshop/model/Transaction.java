@@ -1,5 +1,9 @@
 package mobile.viali.prontoshop.model;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class Transaction {
@@ -98,11 +102,17 @@ public class Transaction {
     }
 
     public List<LineItem> getLineItems() {
-        return lineItems;
+        Gson gson = new Gson();
+        String serializedLineItems = getJsonLineItems();
+        List<LineItem> result = gson.<ArrayList<LineItem>>fromJson(serializedLineItems,
+                new TypeToken<ArrayList<LineItem>>(){}.getType());
+        return lineItems; // TODO: Really not a result?
     }
 
     public void setLineItems(List<LineItem> lineItems) {
-        this.lineItems = lineItems;
+        Gson gson = new Gson();
+        String lineItemJson = gson.toJson(lineItems);
+        this.setJsonLineItems(lineItemJson);
     }
 
     public String getJsonLineItems() {
