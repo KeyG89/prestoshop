@@ -34,6 +34,7 @@
 
     <dimen name="product_image_thumbnail_size">90dp</dimen>
     <dimen name="height_note_order">90dp</dimen>
+    <dimen name="product_image_height">128dp</dimen>
 
 
 </resources>

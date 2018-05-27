@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="@dimen/margin_padding_small">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="0"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_padding_small">
+
+        <TextView
+            android:id="@+id/textview_product_category"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/category"
+            android:textAllCaps="true"
+            android:textColor="@color/primary_dark"
+            android:textSize="@dimen/text_size_xnormal"
+
+            />
+
+        <TextView
+            android:id="@+id/textview_product_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLines="1"
+            android:layout_marginTop="@dimen/margin_padding_small"
+            android:text="@string/product_name"
+            android:textAllCaps="true"
+            android:textColor="@color/secondary_text"
+            android:textSize="@dimen/text_size_header"
+
+            />
+
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/product_image_height">
+
+        <ImageView
+            android:id="@+id/product_image"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/product_image_height"
+            android:scaleType="centerCrop"
+            android:contentDescription="@string/product_description"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/product_image_height"
+            android:background="@drawable/gradient_background_product"/>
+
+        <TextView
+            android:id="@+id/textview_product_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_margin="@dimen/margin_padding_small"
+            android:background="@android:color/transparent"
+            android:text="$19.19"
+            android:textColor="@color/white"
+            android:textSize="@dimen/text_size_huge"
+            />
+
+        <ImageView
+            android:id="@+id/image_view_add_to_cart_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:layout_weight="0"
+            android:src="@drawable/ic_buy"
+            android:scaleType="centerInside"
+            android:minHeight="36dp"
+            android:minWidth="64dp"
+            android:layout_margin="@dimen/margin_padding_small"
+
+            />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:paddingLeft="@dimen/margin_padding_xmall"
+            android:paddingRight="@dimen/margin_padding_xmall"
+            android:paddingTop="@dimen/margin_padding_small"
+            android:paddingBottom="@dimen/margin_padding_small"
+            android:orientation="vertical"
+            android:layout_alignBottom="@id/image_view_add_to_cart_button"
+            android:layout_toLeftOf="@+id/textview_product_price"
+            android:layout_toStartOf="@+id/textview_product_price"
+            >
+
+            <TextView
+                android:id="@+id/textview_product_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@android:color/transparent"
+                android:maxLines="2"
+                android:text=""
+                android:textColor="@color/white"
+                android:textStyle="bold"
+                android:textSize="@dimen/text_size_small"
+                />
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</LinearLayout>
