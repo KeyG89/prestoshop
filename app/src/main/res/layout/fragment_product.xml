@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:padding="4dp"
+    android:padding="@dimen/margin_padding_tiny"
     tools:context=".ui.productList.ProductListFragment">
 
     <android.support.design.widget.FloatingActionButton
@@ -14,7 +14,7 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
         app:fabSize="normal"
-        android:elevation="6dp"  />
+        android:elevation="@dimen/fab_elevation"  />
         <!--android:src="@drawable/ic_action_add"-->
 
 
@@ -35,7 +35,7 @@
     tools:ignore="HardcodedText"
     android:fontFamily="sans-serif-condensed"
     android:gravity="center"
-    android:padding="15dp"
+    android:padding="@dimen/margin_padding_normal"
     android:textStyle="italic"
     android:visibility="gone"/>
 

@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/transparent"
     android:orientation="vertical"
+    android:padding="@dimen/margin_padding_tiny"
     tools:context=".ui.checkout.CheckoutFragment">
 
     <LinearLayout
@@ -12,8 +13,8 @@
         android:layout_height="match_parent"
         android:layout_weight="1"
         android:orientation="vertical"
-        android:paddingLeft="4dp"
-        android:paddingRight="4dp">
+        android:paddingLeft="@dimen/margin_padding_tiny"
+        android:paddingRight="@dimen/margin_padding_tiny">
 
         <android.support.v7.widget.RecyclerView
             android:id="@+id/checkout_list_recyclerview"
@@ -29,7 +30,7 @@
             android:layout_height="match_parent"
             android:fontFamily="sans-serif-condensed"
             android:gravity="center"
-            android:padding="15dp"
+            android:padding="@dimen/margin_padding_normal"
             android:text="@string/no_product_found"
             android:textColor="@color/colorPrimary"
             android:textStyle="italic"
@@ -57,7 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="start"
-                android:paddingRight="5dp"
+                android:paddingRight="@dimen/margin_padding_xtiny"
                 android:text="@string/label_sub_total" />
 
             <TextView
@@ -83,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="start"
-                android:paddingRight="5dp"
+                android:paddingRight="@dimen/margin_padding_xtiny"
                 android:text="@string/label_tax" />
 
             <TextView
@@ -109,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:gravity="start"
-                android:paddingRight="5dp"
+                android:paddingRight="@dimen/margin_padding_xtiny"
                 android:text="@string/label_total" />
 
             <TextView
@@ -123,18 +124,17 @@
 
         </LinearLayout>
 
-        
 
     </LinearLayout>
-    
+
     <RadioGroup
         android:id="@+id/radio_group_payment_type"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_margin="@dimen/margin_padding_xtiny"
         android:gravity="center"
-        android:layout_margin="5dp"
-        android:orientation="horizontal"
-        android:layout_gravity="center">
+        android:orientation="horizontal">
 
         <RadioButton
             android:id="@+id/button_cash"
@@ -143,7 +143,7 @@
             android:layout_gravity="bottom"
             android:checked="true"
             android:text="@string/payment_type_cash"
-            android:textAllCaps="true"/>
+            android:textAllCaps="true" />
 
         <RadioButton
             android:id="@+id/button_card"
@@ -152,7 +152,7 @@
             android:layout_gravity="bottom"
             android:checked="false"
             android:text="@string/payment_type_card"
-            android:textAllCaps="true"/>
+            android:textAllCaps="true" />
 
         <RadioButton
             android:id="@+id/button_paypal"
@@ -161,7 +161,7 @@
             android:layout_gravity="bottom"
             android:checked="false"
             android:text="@string/payment_type_paypal"
-            android:textAllCaps="true"/>
+            android:textAllCaps="true" />
 
 
     </RadioGroup>
@@ -170,32 +170,32 @@
         style="style/ButtonBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="4dp"
-        android:layout_marginTop="4dp"
+        android:layout_gravity="center"
+        android:layout_marginBottom="@dimen/margin_padding_tiny"
+        android:layout_marginTop="@dimen/margin_padding_tiny"
         android:orientation="horizontal">
 
         <Button
             android:id="@+id/clear_cart_button"
             style="@style/BottomBarButton"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="@string/clear"/>
+            android:layout_weight="1"
+            android:text="@string/clear" />
 
         <View
-            android:layout_width="8dp"
+            android:layout_width="@dimen/margin_padding_small"
             android:layout_height="match_parent"
-            android:background="@android:color/transparent"/>
+            android:background="@android:color/transparent" />
 
         <Button
             android:id="@+id/checkout_cart_button"
             style="@style/BottomBarButton"
             android:layout_width="0dp"
-            android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="@string/checkout"/>
+            android:layout_weight="1"
+            android:text="@string/checkout" />
 
     </LinearLayout>
 
