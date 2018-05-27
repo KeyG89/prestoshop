@@ -32,7 +32,7 @@
             android:gravity="center"
             android:padding="@dimen/margin_padding_normal"
             android:text="@string/no_product_found"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/primary"
             android:textStyle="italic"
             android:visibility="gone"
             tools:ignore="HardcodedText" />
@@ -167,7 +167,7 @@
     </RadioGroup>
 
     <LinearLayout
-        style="style/ButtonBar"
+        style="style/MyButtonBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
@@ -177,8 +177,8 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/clear_cart_button"
             style="@style/BottomBarButton"
+            android:id="@+id/clear_cart_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -190,8 +190,8 @@
             android:background="@android:color/transparent" />
 
         <Button
-            android:id="@+id/checkout_cart_button"
             style="@style/BottomBarButton"
+            android:id="@+id/checkout_cart_button"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

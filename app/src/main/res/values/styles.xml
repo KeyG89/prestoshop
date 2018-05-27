@@ -17,8 +17,9 @@
 
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
 
-    <style name="ButtonBar" parent="@android:style/ButtonBar">
-        <item name="@android:bacground">@android:color/transparent</item>
+
+    <style name="MyButtonBar" parent="@android:style/ButtonBar">
+        <item name="android:background">@android:color/transparent</item>
         <item name="android:padding">0dp</item>
 
     </style>

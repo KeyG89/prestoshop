@@ -30,7 +30,7 @@
     android:id="@+id/empty_text"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:textColor="@color/colorPrimary"
+    android:textColor="@color/primary"
     android:text="@string/no_product_found"
     tools:ignore="HardcodedText"
     android:fontFamily="sans-serif-condensed"
