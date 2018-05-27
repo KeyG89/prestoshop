@@ -12,10 +12,12 @@ import mobile.viali.prontoshop.R;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class ProductFragment extends Fragment {
+public class ProductListFragment extends Fragment {
+
+    private View mRootView;
 
 
-    public ProductFragment() {
+    public ProductListFragment() {
         // Required empty public constructor
     }
 
@@ -24,7 +26,8 @@ public class ProductFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_product, container, false);
+        mRootView = inflater.inflate(R.layout.fragment_product, container, false);
+        return mRootView;
     }
 
 }
