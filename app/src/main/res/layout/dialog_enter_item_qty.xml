@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <android.support.design.widget.TextInputLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+
+        <EditText
+            android:id="@+id/edit_text_item_qty"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="@dimen/margin_padding_small"
+            android:clickable="true"
+            android:focusable="false"
+            android:gravity="center"
+            android:hint="@string/qty"
+            android:imeOptions="actionDone"
+            android:inputType="numberSigned"
+            android:singleLine="true"
+            android:textSize="@dimen/text_size_xnormal"
+            android:textStyle="bold" />
+
+
+    </android.support.design.widget.TextInputLayout>
+
+</LinearLayout>
