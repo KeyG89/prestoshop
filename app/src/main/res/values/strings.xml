@@ -22,4 +22,6 @@
     <string name="delete">Delete</string>
     <string name="dialog_title">title</string>
     <string name="no_item_found">No item found in the cart</string>
+    <string name="customer_name">Customer Name</string>
+    <string name="zero">0</string>
 </resources>
