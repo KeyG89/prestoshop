@@ -14,7 +14,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/margin_padding_normal"
-        android:layout_weight="0dp"
         android:orientation="vertical"
         android:layout_margin="@dimen/margin_padding_small">
 
