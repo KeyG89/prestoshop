@@ -25,21 +25,21 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        openFragment(new CheckoutFragment(), "CheckoutFragment List");
+//        openFragment(new CheckoutFragment(), "CheckoutFragment List");
 
     }
 
 
-    private  void openFragment(Fragment fragment, String title){
-        getSupportFragmentManager()
-                .beginTransaction()
-                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
-                .replace(R.id.container, fragment)
-                .addToBackStack(null)
-                .commit();
-        getSupportActionBar().setTitle(title);
-
-    }
+//    private  void openFragment(Fragment fragment, String title){
+//        getSupportFragmentManager()
+//                .beginTransaction()
+//                .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN)
+//                .replace(R.id.container, fragment)
+//                .addToBackStack(null)
+//                .commit();
+//        getSupportActionBar().setTitle(title);
+//
+//    }
 
 
 }
