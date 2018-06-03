@@ -1,18 +1,18 @@
 package mobile.viali.prontoshop.model;
 
 public class LineItem extends  Product {
-    private  int qauntity;
+    private  int quantity;
 
 
     public int getQauntity() {
-        return qauntity;
+        return quantity;
     }
 
     public void setQauntity(int qauntity) {
-        this.qauntity = qauntity;
+        this.quantity = qauntity;
     }
 
     private double getSumPrice(){
-        return getSalePrice() * qauntity;
+        return getSalePrice() * quantity;
     }
 }
