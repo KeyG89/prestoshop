@@ -9,6 +9,11 @@ import mobile.viali.prontoshop.core.dagger.DaggerAppComponent;
 public class ProntoShopApplication extends Application {
 
     private static AppComponent appComponent;
+
+    public static ProntoShopApplication getInstance() {
+        return instance;
+    }
+
     private static ProntoShopApplication instance = new ProntoShopApplication();
 
 
@@ -18,12 +23,13 @@ public class ProntoShopApplication extends Application {
         getAppComponent();
     }
 
-    public void getAppComponent() {
+    public AppComponent getAppComponent() {
 
         if (appComponent == null) {
             appComponent = DaggerAppComponent.builder()
                     .appModule(new AppModule(this))
                     .build();
         }
+        return appComponent;
     }
 }

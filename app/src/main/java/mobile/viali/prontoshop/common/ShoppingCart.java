@@ -5,10 +5,16 @@ import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.squareup.otto.Bus;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.inject.Inject;
+
+import mobile.viali.prontoshop.core.ProntoShopApplication;
+import mobile.viali.prontoshop.core.events.CustomerSelectedEvent;
+import mobile.viali.prontoshop.core.events.UpdateToolbarEvent;
 import mobile.viali.prontoshop.model.Customer;
 import mobile.viali.prontoshop.model.LineItem;
 import mobile.viali.prontoshop.util.Constants;
@@ -22,9 +28,12 @@ public class ShoppingCart implements ShoppingCartContract {
     private final static String LOG_TAG = ShoppingCart.class.getSimpleName();
     private static boolean DEBUG = true;
 
+    @Inject
+    Bus mBus;
 
     public ShoppingCart(SharedPreferences mSharedPreferences) {
         this.sharedPreferences = mSharedPreferences;
+        ProntoShopApplication.getInstance().getAppComponent().inject(this);
         initShoppingCart();
     }
 
@@ -55,8 +64,11 @@ public class ShoppingCart implements ShoppingCartContract {
             if (!serializedCustomer.equals("")) {
                 selectedCustomer = gson.fromJson(serializedCustomer, Customer.class);
             }
-
         }
+
+        populateToolbar();
+
+
     }
 
     public void saveCartToPreferences() {
@@ -109,13 +121,25 @@ public class ShoppingCart implements ShoppingCartContract {
     @Override
     public void removeItemFromCart(LineItem item) {
         shoppingCart.remove(item);
+        if(shoppingCart.size() == 0){
+            mBus.post(new CustomerSelectedEvent(new Customer(), true));
+        }
+        populateToolbar();
 
     }
 
     @Override
     public void clearAllItemsFromCart() {
         shoppingCart.clear();
+        selectedCustomer = null;
 
+        editor.putString(Constants.SERIALIZED_CART_ITEMS, "").commit();
+        editor.putString(Constants.SERIALIZED_CUSTOMER, "").commit();
+        editor.putString(Constants.OPEN_CART_EXISTS, "").commit();
+
+        populateToolbar();
+
+        mBus.post(new CustomerSelectedEvent(new Customer(), true));
     }
 
     @Override
@@ -126,6 +150,8 @@ public class ShoppingCart implements ShoppingCartContract {
     @Override
     public void setCustomer(Customer customer) {
         selectedCustomer = customer;
+        mBus.post(new CustomerSelectedEvent(customer, false));
+
 
     }
 
@@ -150,7 +176,12 @@ public class ShoppingCart implements ShoppingCartContract {
             shoppingCart.add(item);
         }
 
+        populateToolbar();
 
+    }
+
+    private void populateToolbar(){
+        mBus.post(new UpdateToolbarEvent(shoppingCart));
     }
 
     @Override
@@ -161,6 +192,9 @@ public class ShoppingCart implements ShoppingCartContract {
     @Override
     public void completeCheckout() {
         shoppingCart.clear();
+        populateToolbar();
+        mBus.post(new CustomerSelectedEvent(new Customer(), true));
+
 
     }
 }
