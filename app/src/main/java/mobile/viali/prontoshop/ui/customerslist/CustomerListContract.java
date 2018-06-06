@@ -2,6 +2,7 @@ package mobile.viali.prontoshop.ui.customerslist;
 
 import java.util.List;
 
+import mobile.viali.prontoshop.core.listeners.OnDatabaseOperationCompleteListener;
 import mobile.viali.prontoshop.model.Customer;
 
 public interface CustomerListContract {
@@ -52,11 +53,11 @@ public interface CustomerListContract {
 
         Customer getCustomerById(long id);
 
-        void onDeleteCustomer(Customer customer);
+        void onDeleteCustomer(Customer customer, OnDatabaseOperationCompleteListener listener);
 
-        void addCustomer(Customer customer);
+        void addCustomer(Customer customer, OnDatabaseOperationCompleteListener listener);
 
-        void updateCustomer(Customer cusomter);
+        void updateCustomer(Customer cusomter, OnDatabaseOperationCompleteListener listener);
 
 
     }

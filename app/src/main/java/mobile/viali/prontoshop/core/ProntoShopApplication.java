@@ -10,9 +10,6 @@ public class ProntoShopApplication extends Application {
 
     private static AppComponent appComponent;
 
-    public static ProntoShopApplication getInstance() {
-        return instance;
-    }
 
     private static ProntoShopApplication instance = new ProntoShopApplication();
 
@@ -32,4 +29,9 @@ public class ProntoShopApplication extends Application {
         }
         return appComponent;
     }
+
+    public static ProntoShopApplication getInstance() {
+        return instance;
+    }
+
 }
