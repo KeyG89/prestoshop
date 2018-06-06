@@ -2,6 +2,7 @@ package mobile.viali.prontoshop.ui.checkout;
 
 import java.util.List;
 
+import mobile.viali.prontoshop.core.listeners.OnDatabaseOperationCompleteListener;
 import mobile.viali.prontoshop.model.LineItem;
 import mobile.viali.prontoshop.model.Transaction;
 
@@ -51,9 +52,9 @@ public interface CheckoutContract {
 
         List<LineItem> getAllLineItems();
 
-        void saveTransaction(Transaction transaction);
+        void saveTransaction(Transaction transaction, OnDatabaseOperationCompleteListener listener);
 
-        void updateTransaction(Transaction transaction);
+        void updateTransaction(Transaction transaction, OnDatabaseOperationCompleteListener listener);
 
 
     }

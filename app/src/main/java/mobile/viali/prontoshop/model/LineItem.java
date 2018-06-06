@@ -17,7 +17,7 @@ public class LineItem extends  Product {
         this.quantity = qauntity;
     }
 
-    private double getSumPrice(){
+    public double getSumPrice(){
         return getSalePrice() * quantity;
     }
 }
