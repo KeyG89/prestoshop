@@ -2,7 +2,9 @@ package mobile.viali.prontoshop.ui.productList;
 
 import java.util.List;
 
+import mobile.viali.prontoshop.core.listeners.OnDatabaseOperationCompleteListener;
 import mobile.viali.prontoshop.model.Category;
+import mobile.viali.prontoshop.model.LineItem;
 import mobile.viali.prontoshop.model.Product;
 
 public interface ProductListContract {
@@ -24,6 +26,8 @@ public interface ProductListContract {
         void hideEmptyText();
 
         void showMessage(String message);
+
+        void addItemToCart(LineItem item);
 
     }
 
@@ -58,11 +62,11 @@ public interface ProductListContract {
 
         Product getProductById(long id);
 
-        void deleteProduct(Product product);
+        void deleteProduct(Product product, OnDatabaseOperationCompleteListener listener);
 
-        void addProduct(Product product);
+        void addProduct(Product product, OnDatabaseOperationCompleteListener listener);
 
-        void updateProduct(Product product);
+        void updateProduct(Product product, OnDatabaseOperationCompleteListener listener);
 
         List<Category> getAllCategories();
 

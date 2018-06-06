@@ -194,7 +194,5 @@ public class ShoppingCart implements ShoppingCartContract {
         shoppingCart.clear();
         populateToolbar();
         mBus.post(new CustomerSelectedEvent(new Customer(), true));
-
-
     }
 }
