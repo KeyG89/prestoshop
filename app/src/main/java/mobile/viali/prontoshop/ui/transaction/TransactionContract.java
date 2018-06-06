@@ -29,7 +29,7 @@ public interface TransactionContract {
 
         void editTransaction(Transaction transaction);
 
-        void deleteTransaction(Transaction delete);
+        void deleteTransaction(Transaction transaction);
 
         Customer getCustomerById(long id);
 

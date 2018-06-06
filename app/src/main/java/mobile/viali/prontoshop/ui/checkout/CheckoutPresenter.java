@@ -21,8 +21,8 @@ public class CheckoutPresenter implements CheckoutContract.Action, OnDatabaseOpe
     CheckoutContract.Repository mRepository;
     @Inject
     ShoppingCart mCart;
-    @Inject
-    Bus mBus;
+/*    @Inject
+    Bus mBus;*/
 
     private double subTotal = 0.0;
     private double total;
