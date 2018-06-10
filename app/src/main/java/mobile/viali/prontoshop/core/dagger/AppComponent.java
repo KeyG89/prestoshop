@@ -16,7 +16,8 @@ import mobile.viali.prontoshop.ui.transaction.TransactionPresenter;
         modules = {
                 AppModule.class,
                 ShoppingCartModule.class,
-                BusModule.class
+                BusModule.class,
+                PersistenceModule.class
         }
 )
 
