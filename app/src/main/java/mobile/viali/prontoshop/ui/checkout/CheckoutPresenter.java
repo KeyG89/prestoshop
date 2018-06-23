@@ -33,8 +33,6 @@ public class CheckoutPresenter implements CheckoutContract.Action, OnDatabaseOpe
 
     public CheckoutPresenter(CheckoutContract.View mView) {
         this.mView = mView;
-        ProntoShopApplication.getInstance().getAppComponent().inject(this);
-
     }
 
 

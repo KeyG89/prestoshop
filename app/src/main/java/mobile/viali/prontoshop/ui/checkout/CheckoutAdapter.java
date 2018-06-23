@@ -52,7 +52,7 @@ public class CheckoutAdapter extends RecyclerView.Adapter<CheckoutAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         LineItem item = mLineItems.get(position);
-        Picasso.get().load(item.getImagePath())
+        Picasso.with(mContext).load(item.getImagePath())
                 .fit()
                 .placeholder(R.drawable.ic_photo)
                 .into(holder.productImage);

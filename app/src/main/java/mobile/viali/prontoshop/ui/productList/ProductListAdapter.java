@@ -32,6 +32,11 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
         this.mListener = mListener;
     }
 
+    public void replaceData(List<Product> products){
+        mProducts = products;
+        notifyDataSetChanged();
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -44,13 +49,15 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         if (mProducts != null) {
             Product product = mProducts.get(position);
-            Picasso.get()
+            Picasso.with(mContext)
                     .load(product.getImagePath())
                     .fit()
                     .placeholder(R.drawable.ic_photo)
                     .into(holder.productImage);
 
-            holder.productName.setText(product.getPromoMessage());
+
+
+            holder.productName.setText(product.getProductName());
             holder.category.setText(product.getCategoryName());
             holder.productPrice.setText(Formatter.formatCurrency(product.getSalePrice()));
             String producDescription = product.getDescription();
@@ -70,7 +77,7 @@ public class ProductListAdapter extends RecyclerView.Adapter<ProductListAdapter.
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener, View.OnLongClickListener {
 
-        @BindView(R.id.text_view_product_name)
+        @BindView(R.id.textview_product_name)
         TextView productName;
         @BindView(R.id.textview_product_category)
         TextView category;

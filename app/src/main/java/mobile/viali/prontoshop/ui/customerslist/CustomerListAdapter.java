@@ -50,7 +50,7 @@ public class CustomerListAdapter extends RecyclerView.Adapter<CustomerListAdapte
 
         holder.customerName.setText(selectedCustomer.getCustomerName());
         holder.customerEmail.setText(selectedCustomer.getEmailAddress());
-        Picasso.get()
+        Picasso.with(mContext)
                 .load(selectedCustomer.getProfileImagePath())
                 .fit()
                 .placeholder(R.drawable.profile_icon)

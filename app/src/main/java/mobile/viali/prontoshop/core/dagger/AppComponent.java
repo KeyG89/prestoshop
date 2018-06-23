@@ -26,7 +26,6 @@ public interface AppComponent {
     void inject(ShoppingCart cart);
     void inject(ProductPresenter productPresenter);
     void inject(CustomerPresenter customerPresenter);
-    void inject(CheckoutPresenter checkoutPresenter);
     void inject(TransactionPresenter transactionPresenter);
 
 }
