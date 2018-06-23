@@ -84,10 +84,10 @@ public class SampleCustomerData {
         customers.add(customer11);
 
         Customer customer12 = new Customer();
-        customer11.setCustomerName("James McGiney");
-        customer11.setEmailAddress("james@outlook.com");
-        customer11.setProfileImagePath("https://image.ibb.co/j1MDq8/person12.png");
-        customers.add(customer11);
+        customer12.setCustomerName("James McGiney");
+        customer12.setEmailAddress("james@outlook.com");
+        customer12.setProfileImagePath("https://image.ibb.co/j1MDq8/person12.png");
+        customers.add(customer12);
         return customers;
     }
 }

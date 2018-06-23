@@ -32,10 +32,10 @@ public class CustomerPresenter implements CustomerListContract.Action, OnDatabas
     @Override
     public void loadCustomer() {
         List<Customer> availableCustomers = mRepository.getAllCustomers();
-        if(availableCustomers !=null && availableCustomers.size() >0){
+        if (availableCustomers != null && availableCustomers.size() > 0) {
             mView.hideEmptyText();
             mView.showCustomers(availableCustomers);
-        }else{
+        } else {
             mView.showEmptyText();
         }
 
