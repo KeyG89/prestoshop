@@ -1,5 +1,6 @@
 package mobile.viali.prontoshop.common;
 
+        import android.database.sqlite.SQLiteDatabase;
         import android.os.Bundle;
         import android.support.design.widget.TabLayout;
         import android.support.v4.view.ViewPager;
@@ -9,6 +10,7 @@ package mobile.viali.prontoshop.common;
         import butterknife.BindView;
         import butterknife.ButterKnife;
         import mobile.viali.prontoshop.R;
+        import mobile.viali.prontoshop.data.DatabaseHelper;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -25,8 +27,10 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         ButterKnife.bind(this);
         setSupportActionBar(toolbar);
-
         setupViewPager();
+
+        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        SQLiteDatabase database = databaseHelper.getWritableDatabase();
 
     }
 
