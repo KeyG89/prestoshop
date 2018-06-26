@@ -1,5 +1,9 @@
 package mobile.viali.prontoshop.model;
 
+import android.database.Cursor;
+
+import mobile.viali.prontoshop.util.Constants;
+
 public class Product {
     private long id;
     private String productName;
@@ -118,5 +122,35 @@ public class Product {
 
     public void setDateOfLastTtransaction(long dateOfLastTtransaction) {
         this.dateOfLastTtransaction = dateOfLastTtransaction;
+    }
+
+    public static Product getProductFromCursor(Cursor crs) {
+        long id = crs.getLong(crs.getColumnIndex(Constants.COLUMN_ID));
+        String name = crs.getString(crs.getColumnIndex(Constants.COLUMN_NAME));
+        String description = crs.getString(crs.getColumnIndex(Constants.COLUMN_DESCRIPTION));
+        String promoMessage = crs.getString(crs.getColumnIndex(Constants.COLUMN_PROMO_MESSAGE));
+        Double salePrice = crs.getDouble(crs.getColumnIndex(Constants.COLUMN_PRICE));
+        Double purchasePrice = crs.getDouble(crs.getColumnIndex(Constants.COLUMN_PURCHASE_PRICE));
+        String imagePath = crs.getString(crs.getColumnIndex(Constants.COLUMN_IMAGE_PATH));
+        long catId = crs.getLong(crs.getColumnIndex(Constants.COLUMN_CATEGORY_ID));
+        String catName = crs.getString(crs.getColumnIndex(Constants.COLUMN_CATEGORY_NAME));
+        long dateCreated = crs.getLong(crs.getColumnIndex(Constants.COLUMN_DATE_CREATED));
+        long dateLastUpdated = crs.getLong(crs.getColumnIndex(Constants.COLUMN_LAST_UPDATED));
+
+        Product product = new Product();
+        product.setId(id);
+        product.setProductName(name);
+        product.setDescription(description);
+        product.setPromoMessage(promoMessage);
+        product.setSalePrice(salePrice);
+        product.setPurchasePrice(purchasePrice);
+        product.setImagePath(imagePath);
+        product.setCategoryId(catId);
+        product.setCategoryName(catName);
+        product.setDateAdded(dateCreated);
+        product.setDateOfLastTtransaction(dateLastUpdated);
+
+        return product;
+
     }
 }
