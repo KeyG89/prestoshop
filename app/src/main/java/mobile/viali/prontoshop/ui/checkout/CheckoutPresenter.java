@@ -87,8 +87,8 @@ public class CheckoutPresenter implements CheckoutContract.Action, OnDatabaseOpe
         salesTransaction.setCustomerId(mCart.getSelectedCustomer().getId());
         salesTransaction.setLineItems(mCart.getShoppingCart());
         salesTransaction.setTaxAmount(tax);
-        salesTransaction.setSubTotalAmout(subTotal);
-        salesTransaction.setTotalAmout(total);
+        salesTransaction.setSubTotalAmount(subTotal);
+        salesTransaction.setTotalAmount(total);
         salesTransaction.setPaymentType(selectedPaymentType);
         salesTransaction.setPaid(paid);
         mRepository.saveTransaction(salesTransaction, this);

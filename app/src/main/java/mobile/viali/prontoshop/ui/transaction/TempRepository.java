@@ -33,7 +33,7 @@ public class TempRepository implements TransactionContract.Repository {
     }
 
     @Override
-    public void saveTransaction(SalesTransaction transaction, OnDatabaseOperationCompleteListener listener) {
-
+    public long saveTransaction(SalesTransaction transaction, OnDatabaseOperationCompleteListener listener) {
+        return  0;
     }
 }
