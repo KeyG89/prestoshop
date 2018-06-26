@@ -6,7 +6,6 @@ import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;
-import mobile.viali.prontoshop.model.Transaction;
 import mobile.viali.prontoshop.ui.customerslist.CustomerListContract;
 import mobile.viali.prontoshop.ui.customerslist.CustomerListInMemoryRepository;
 import mobile.viali.prontoshop.ui.productList.ProductInMemoryRepository;

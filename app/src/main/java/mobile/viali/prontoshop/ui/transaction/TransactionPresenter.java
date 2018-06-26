@@ -5,10 +5,9 @@ import java.util.List;
 import javax.inject.Inject;
 
 import mobile.viali.prontoshop.core.ProntoShopApplication;
-import mobile.viali.prontoshop.core.dagger.AppComponent;
 import mobile.viali.prontoshop.core.listeners.OnDatabaseOperationCompleteListener;
 import mobile.viali.prontoshop.model.Customer;
-import mobile.viali.prontoshop.model.Transaction;
+import mobile.viali.prontoshop.model.SalesTransaction;
 import mobile.viali.prontoshop.ui.customerslist.CustomerListContract;
 
 public class TransactionPresenter implements TransactionContract.Action, OnDatabaseOperationCompleteListener {
@@ -26,10 +25,10 @@ public class TransactionPresenter implements TransactionContract.Action, OnDatab
 
     @Override
     public void loadTransaction() {
-        List<Transaction> transactions = mRepository.getAllTransactions();
-        if (transactions != null && transactions.size() > 0) {
+        List<SalesTransaction> salesTransactions = mRepository.getAllTransactions();
+        if (salesTransactions != null && salesTransactions.size() > 0) {
             mView.hideEmptyText();
-            mView.showTransaction(transactions);
+            mView.showTransaction(salesTransactions);
         } else {
             mView.showEmptyText();
         }
@@ -37,20 +36,20 @@ public class TransactionPresenter implements TransactionContract.Action, OnDatab
     }
 
     @Override
-    public void onDeleteItemButtonClicked(Transaction transaction) {
-        mView.showConfirmDeletePrompt(transaction);
+    public void onDeleteItemButtonClicked(SalesTransaction salesTransaction) {
+        mView.showConfirmDeletePrompt(salesTransaction);
 
     }
 
     @Override
-    public void editTransaction(Transaction transaction) {
-        mRepository.updateTransaction(transaction, this);
+    public void editTransaction(SalesTransaction salesTransaction) {
+        mRepository.updateTransaction(salesTransaction, this);
 
     }
 
     @Override
-    public void deleteTransaction(Transaction transaction) {
-        mRepository.deleteTransaction(transaction.getId(), this);
+    public void deleteTransaction(SalesTransaction salesTransaction) {
+        mRepository.deleteTransaction(salesTransaction.getId(), this);
 
     }
 

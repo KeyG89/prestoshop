@@ -4,18 +4,19 @@ import java.util.List;
 
 import mobile.viali.prontoshop.core.listeners.OnDatabaseOperationCompleteListener;
 import mobile.viali.prontoshop.model.Customer;
-import mobile.viali.prontoshop.model.Transaction;
+import mobile.viali.prontoshop.model.LineItem;
+import mobile.viali.prontoshop.model.SalesTransaction;
 
 public interface TransactionContract {
 
     public interface View {
-        void showTransaction(List<Transaction> transactions);
+        void showTransaction(List<SalesTransaction> salesTransactions);
 
         void showEmptyText();
 
         void hideEmptyText();
 
-        void showConfirmDeletePrompt(Transaction transaction);
+        void showConfirmDeletePrompt(SalesTransaction salesTransaction);
 
         void showMessage(String message);
 
@@ -25,11 +26,11 @@ public interface TransactionContract {
     public interface Action {
         void loadTransaction();
 
-        void onDeleteItemButtonClicked(Transaction transaction);
+        void onDeleteItemButtonClicked(SalesTransaction salesTransaction);
 
-        void editTransaction(Transaction transaction);
+        void editTransaction(SalesTransaction salesTransaction);
 
-        void deleteTransaction(Transaction transaction);
+        void deleteTransaction(SalesTransaction salesTransaction);
 
         Customer getCustomerById(long id);
 
@@ -37,12 +38,11 @@ public interface TransactionContract {
     }
 
     public interface Repository {
-        List<Transaction> getAllTransactions();
-
-        void updateTransaction(Transaction transaction, OnDatabaseOperationCompleteListener listener);
-
-        Transaction getTransactionById(long id);
-
+        List<SalesTransaction> getAllTransactions();
+        SalesTransaction getTransactionById(long id);
         void deleteTransaction(long id, OnDatabaseOperationCompleteListener listener);
+        List<LineItem> getAllLineItems();
+        long saveTransaction(SalesTransaction transaction, OnDatabaseOperationCompleteListener listener);
+        void updateTransaction(SalesTransaction salesTransaction, OnDatabaseOperationCompleteListener listener);
     }
 }

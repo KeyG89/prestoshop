@@ -1,17 +1,13 @@
 package mobile.viali.prontoshop.ui.checkout;
 
-import com.squareup.otto.Bus;
-
 import java.util.List;
 
 import javax.inject.Inject;
 
 import mobile.viali.prontoshop.common.ShoppingCart;
-import mobile.viali.prontoshop.core.ProntoShopApplication;
 import mobile.viali.prontoshop.core.listeners.OnDatabaseOperationCompleteListener;
 import mobile.viali.prontoshop.model.LineItem;
-import mobile.viali.prontoshop.model.Transaction;
-import mobile.viali.prontoshop.ui.customerslist.CustomerListContract;
+import mobile.viali.prontoshop.model.SalesTransaction;
 
 public class CheckoutPresenter implements CheckoutContract.Action, OnDatabaseOperationCompleteListener {
 
@@ -87,15 +83,15 @@ public class CheckoutPresenter implements CheckoutContract.Action, OnDatabaseOpe
             mView.showMessage("No Customer is selected");
         }
 
-        Transaction transaction = new Transaction();
-        transaction.setCustomerId(mCart.getSelectedCustomer().getId());
-        transaction.setLineItems(mCart.getShoppingCart());
-        transaction.setTaxAmount(tax);
-        transaction.setSubTotalAmout(subTotal);
-        transaction.setTotalAmout(total);
-        transaction.setPaymentType(selectedPaymentType);
-        transaction.setPaid(paid);
-        mRepository.saveTransaction(transaction, this);
+        SalesTransaction salesTransaction = new SalesTransaction();
+        salesTransaction.setCustomerId(mCart.getSelectedCustomer().getId());
+        salesTransaction.setLineItems(mCart.getShoppingCart());
+        salesTransaction.setTaxAmount(tax);
+        salesTransaction.setSubTotalAmout(subTotal);
+        salesTransaction.setTotalAmout(total);
+        salesTransaction.setPaymentType(selectedPaymentType);
+        salesTransaction.setPaid(paid);
+        mRepository.saveTransaction(salesTransaction, this);
 
     }
 
