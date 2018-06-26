@@ -29,7 +29,7 @@ public class ProductListSqliteManager implements ProductListContract.Repository 
     @Override
     public List<Product> getAllProducts() {
         // initialize an empty list of product
-        List<Product> product = new ArrayList<>();
+        List<Product> products = new ArrayList<>();
 
         // SQL command to select all Products
         String querry = "SELECT * FROM " + Constants.PRODUCT_TABLE;
@@ -42,7 +42,7 @@ public class ProductListSqliteManager implements ProductListContract.Repository 
             if (crs.moveToFirst()) {
                 while (!crs.isAfterLast()) {
                     // get each product in the Cursor
-                    getAllProducts().add(Product.getProductFromCursor(crs));
+                    products.add(Product.getProductFromCursor(crs));
                     crs.moveToNext();
                 }
             }
@@ -50,7 +50,7 @@ public class ProductListSqliteManager implements ProductListContract.Repository 
             crs.close();
 
         }
-        return null;
+        return products;
     }
 
     @Override

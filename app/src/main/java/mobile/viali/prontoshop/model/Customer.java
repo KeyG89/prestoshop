@@ -1,7 +1,12 @@
 package mobile.viali.prontoshop.model;
 
+import android.database.Cursor;
+
+
+import mobile.viali.prontoshop.util.Constants;
+
 public class Customer {
-    private  long id;
+    private long id;
     private String customerName;
     private String emailAddress;
     private String phoneNumber;
@@ -15,7 +20,7 @@ public class Customer {
     private long dateAdded;
     private long dateOfLastTransaction;
 
-    public Customer(){
+    public Customer() {
         id = 0;
         customerName = "";
         emailAddress = "";
@@ -30,6 +35,43 @@ public class Customer {
         dateAdded = 0L;
         dateOfLastTransaction = 0L;
 
+    }
+
+    public Customer(long customerId, String name, String email, String imagePath, String phone, String street1, String street2,
+                    String customerCity, String customerState, String zip, String customerNote, long createDate, long modifiedDate) {
+        id = customerId;
+        customerName = name;
+        emailAddress = email;
+        profileImagePath = imagePath;
+        phoneNumber = phone;
+        streetAddress = street1;
+        streetAddress2 = street2;
+        city = customerCity;
+        state = customerState;
+        postalCode = zip;
+        note = customerNote;
+        dateAdded = createDate;
+        dateOfLastTransaction = modifiedDate;
+
+    }
+
+    public static Customer getCustomerFromCursor(Cursor crs) {
+        long id = crs.getLong(crs.getColumnIndex(Constants.COLUMN_ID));
+        String name = crs.getString(crs.getColumnIndex(Constants.COLUMN_NAME));
+        String email = crs.getString(crs.getColumnIndex(Constants.COLUMN_EMAIL));
+        String imagePath = crs.getString(crs.getColumnIndex(Constants.COLUMN_IMAGE_PATH));
+        String phone = crs.getString(crs.getColumnIndex(Constants.COLUMN_PHONE));
+        String street1 = crs.getString(crs.getColumnIndex(Constants.COLUMN_STREET1));
+        String street2 = crs.getString(crs.getColumnIndex(Constants.COLUMN_STREET2));
+        String city = crs.getString(crs.getColumnIndex(Constants.COLUMN_CITY));
+        String state = crs.getString(crs.getColumnIndex(Constants.COLUMN_STATE));
+        String zip = crs.getString(crs.getColumnIndex(Constants.COLUMN_STREET1));
+        String note = crs.getString(crs.getColumnIndex(Constants.COLUMN_NOTE));
+        long createDate = crs.getLong(crs.getColumnIndex(Constants.COLUMN_DATE_CREATED));
+        long modifiedDate = crs.getLong(crs.getColumnIndex(Constants.COLUMN_LAST_UPDATED));
+
+        Customer customer = new Customer(id, name, email, imagePath, phone, street1, street2, city, state, zip, note, createDate, modifiedDate);
+        return customer;
     }
 
     public long getId() {
@@ -135,4 +177,6 @@ public class Customer {
     public void setDateOfLastTransaction(long dateOfLastTransaction) {
         this.dateOfLastTransaction = dateOfLastTransaction;
     }
+
+
 }
