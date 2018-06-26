@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +16,10 @@ import mobile.viali.prontoshop.model.Category;
 import mobile.viali.prontoshop.model.Product;
 import mobile.viali.prontoshop.util.Constants;
 
+import static mobile.viali.prontoshop.BuildConfig.DEBUG;
+
 public class ProductListSqliteManager implements ProductListContract.Repository {
+    private static final String LOG_TAG = "PRD_LIST_SQLITE_MANAG";
     private DatabaseHelper dbHelper;
     private final Context mContext;
     private SQLiteDatabase database;
@@ -98,15 +102,60 @@ public class ProductListSqliteManager implements ProductListContract.Repository 
         cv.put(Constants.COLUMN_CATEGORY_NAME, product.getCategoryName());
         cv.put(Constants.COLUMN_DATE_CREATED, System.currentTimeMillis());
         cv.put(Constants.COLUMN_LAST_UPDATED, System.currentTimeMillis());
+        cv.put(Constants.COLUMN_CATEGORY_ID, createOrGetCategoryId(product.getCategoryName(), listener));
 
         try {
-            database.insertOrThrow(Constants.RETAILER_TABLE, null, cv);
+            database.insertOrThrow(Constants.PRODUCT_TABLE, null, cv);
             listener.onDatabaseOperationSucceded("Product Added");
+            if (DEBUG) {
+                Log.d(LOG_TAG, "Product Added");
+            }
         } catch (SQLException e) {
-            listener.onDatabaseOperationFailed(e.getMessage());
+            listener.onDatabaseOperationFailed(e.getCause() + " " + e.getMessage());
+        }
+    }
+
+
+    private long createOrGetCategoryId(String categoryName, OnDatabaseOperationCompleteListener listener) {
+        Category foundCategory = getCategory(categoryName);
+        if (foundCategory == null) {
+            foundCategory = addCategory(categoryName, listener);
+        }
+        return foundCategory.getId();
+    }
+
+    private Category addCategory(String categoryName, OnDatabaseOperationCompleteListener listener) {
+        Category category = new Category();
+        category.setCategoryName(categoryName);
+        saveCategory(category, listener);
+        return category;
+    }
+
+    private void saveCategory(Category category, OnDatabaseOperationCompleteListener listener) {
+
+        ContentValues values = new ContentValues();
+        values.put(Constants.COLUMN_NAME, category.getCategoryName());
+        try {
+            database.insertOrThrow(Constants.CATEGORY_TABLE, null, values);
+        } catch (SQLException e) {
+            listener.onDatabaseOperationFailed("Unable to save Category");
+
         }
 
     }
+
+    private Category getCategory(String categoryName) {
+
+        Category category = null;
+        Cursor cursor = database.rawQuery("SELECT * FROM " + Constants.CATEGORY_TABLE + " " +
+                "WHERE " + Constants.COLUMN_NAME + " = '" + categoryName + "'", null);
+        if (cursor.moveToFirst()) {
+            category = Category.fromCursor(cursor);
+        }
+        cursor.close();
+        return category;
+    }
+
 
     @Override
     public void updateProduct(Product product, OnDatabaseOperationCompleteListener listener) {
@@ -133,8 +182,23 @@ public class ProductListSqliteManager implements ProductListContract.Repository 
     }
 
 
-        @Override
-        public List<Category> getAllCategories () {
-            return null;
+    @Override
+    public List<Category> getAllCategories() {
+        List<Category> categories = new ArrayList<>();
+
+        //Command to select all Categories
+        String selectQuery = "SELECT * FROM " + Constants.CATEGORY_TABLE;
+
+        //Get a cursor for all Categories in the database
+        Cursor cursor = database.rawQuery(selectQuery, null);
+        if (cursor != null) {
+            cursor.moveToFirst();
+            while (!cursor.isAfterLast()) {
+                categories.add(Category.fromCursor(cursor));
+                cursor.moveToNext();
+            }
+            cursor.close();
         }
+        return categories;
     }
+}
