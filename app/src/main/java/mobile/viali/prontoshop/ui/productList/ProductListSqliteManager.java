@@ -116,7 +116,7 @@ public class ProductListSqliteManager implements ProductListContract.Repository 
     }
 
 
-    private long createOrGetCategoryId(String categoryName, OnDatabaseOperationCompleteListener listener) {
+    public long createOrGetCategoryId(String categoryName, OnDatabaseOperationCompleteListener listener) {
         Category foundCategory = getCategory(categoryName);
         if (foundCategory == null) {
             foundCategory = addCategory(categoryName, listener);
