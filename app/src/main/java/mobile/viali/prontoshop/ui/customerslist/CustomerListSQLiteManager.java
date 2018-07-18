@@ -27,7 +27,7 @@ public class CustomerListSQLiteManager implements CustomerListContract.Repositor
     public CustomerListSQLiteManager(Context mContext) {
         this.mContext = mContext;
         databaseHelper = DatabaseHelper.newInstance(mContext);
-        databaseHelper.getWritableDatabase();
+        database = databaseHelper.getWritableDatabase();
     }
 
     @Override
@@ -45,7 +45,7 @@ public class CustomerListSQLiteManager implements CustomerListContract.Repositor
             if (crs.moveToFirst()) {
                 while (!crs.isAfterLast()) {
                     // get each customer in the Cursor
-                    getAllCustomers().add(Customer.getCustomerFromCursor(crs));
+                    customers.add(Customer.getCustomerFromCursor(crs));
                     crs.moveToNext();
                 }
             }
@@ -94,7 +94,7 @@ public class CustomerListSQLiteManager implements CustomerListContract.Repositor
 
     @Override
     public void addCustomer(Customer customer, OnDatabaseOperationCompleteListener listener) {
-        if (database != null) {
+        if (database != null){
             //prepare the transaction information that will be saved to the database
             ContentValues values = new ContentValues();
             values.put(Constants.COLUMN_NAME, customer.getCustomerName());
@@ -112,7 +112,7 @@ public class CustomerListSQLiteManager implements CustomerListContract.Repositor
             try {
                 database.insertOrThrow(Constants.CUSTOMER_TABLE, null, values);
                 listener.onDatabaseOperationSucceded("Customer Added");
-                if (DEBUG) {
+                if (DEBUG){
                     Log.d(TAG, "Customer Added");
                 }
             } catch (SQLException e) {

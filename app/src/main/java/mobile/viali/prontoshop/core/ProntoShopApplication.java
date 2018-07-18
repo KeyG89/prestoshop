@@ -8,7 +8,6 @@ import android.util.Log;
 
 import com.squareup.otto.Bus;
 
-import mobile.viali.prontoshop.common.AddInitialDataService;
 import mobile.viali.prontoshop.core.dagger.AppComponent;
 import mobile.viali.prontoshop.core.dagger.AppModule;
 import mobile.viali.prontoshop.core.dagger.DaggerAppComponent;

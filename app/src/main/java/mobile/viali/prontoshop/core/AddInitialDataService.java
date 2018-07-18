@@ -1,4 +1,4 @@
-package mobile.viali.prontoshop.common;
+package mobile.viali.prontoshop.core;
 
 import android.app.IntentService;
 import android.content.Intent;
@@ -8,7 +8,9 @@ import android.util.Log;
 import java.util.ArrayList;
 import java.util.List;
 
+import mobile.viali.prontoshop.common.MainActivity;
 import mobile.viali.prontoshop.core.listeners.OnDatabaseOperationCompleteListener;
+import mobile.viali.prontoshop.data.DatabaseHelper;
 import mobile.viali.prontoshop.data.SampleCustomerData;
 import mobile.viali.prontoshop.data.SampleProductData;
 import mobile.viali.prontoshop.model.Customer;
@@ -22,13 +24,17 @@ public class AddInitialDataService extends IntentService {
      */
     public AddInitialDataService() {
         super("AddInitialDataService");
+        Log.d("INIT", "INITCONSTRUCTOR");
+
     }
 
     @Override
     protected void onHandleIntent(@Nullable Intent intent) {
+        Log.d("INIT", "onHandleIntent");
 
         //Add sampple Customers to database
         List<Customer> customers = SampleCustomerData.getCustomers();
+        Log.d("CUSTOMERSX: ", "SIZE: " + customers.size());
         CustomerListSQLiteManager customerListSQLiteManager = new CustomerListSQLiteManager(getApplicationContext());
         for (Customer customer : customers) {
             customerListSQLiteManager.addCustomer(customer, new OnDatabaseOperationCompleteListener() {
